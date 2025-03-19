@@ -1,16 +1,31 @@
+.canvaImg {
+    width: 100%;
+    height: 100%;
+    background-color: gold;
+    display: block;
+    object-fit: cover;
+    z-index: 100;
+    border: 5px solid blue;
+}
 * {
     margin: 0 !important;
     padding: 0 !important;
     box-sizing: border-box;
-}*::selection{
+}
+
+*::selection {
     color: green;
     background-color: black;
-}body {
+}
+
+body {
     text-align: center;
     font-family: Arial, sans-serif;
     background-color: #f3f3f3;
     padding: 20px;
-}.main-container {
+}
+
+.main-container {
     background-color: rgba(0, 0, 0, 0.863);
     height: 100vh;
     width: 100vw;
@@ -19,7 +34,9 @@
     justify-content: center;
     flex-direction: column;
     overflow: hidden;
-}.main-container>header {
+}
+
+.main-container>header {
     height: 5%;
     width: 100%;
     /* border: 1px solid blue; */
@@ -28,8 +45,9 @@
     justify-content: center;
     /* background-color: rgba(255, 255, 255, 0.61); */
     background-color: rgba(223, 146, 146, 0.671);
+}
 
-}.main-container>main {
+.main-container>main {
     height: 95%;
     width: 100%;
     /* border: 1px solid rgb(255, 0, 0); */
@@ -37,7 +55,9 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-}/* .main-container>main>.users {
+}
+
+/* .main-container>main>.users {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -52,7 +72,7 @@
     overflow-x: scroll;
 }
 
-canvas {
+.canvas {
     width: 70vmin; 
     height: 20vmin;
     background: #f3f3f3;
@@ -77,10 +97,14 @@ canvas {
     width: 98%;
     min-height: 90%;
     overflow: scroll;
-}.users::-webkit-scrollbar {
+}
+
+.users::-webkit-scrollbar {
     display: none;
-}/* Styling canvas for responsiveness */
-canvas {
+}
+
+/* Styling .canvas for responsiveness */
+.canvas {
     width: 40vmin;
     height: 40vmin;
     flex: 1 1 30vmin;
@@ -89,35 +113,48 @@ canvas {
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.452);
 
-    aspect-ratio: 1 / 1; /* Square shape ensure karta hai */
-    width: calc(33.33% - 15px); /* Responsive width */
+    aspect-ratio: 1 / 1;
+    /* Square shape ensure karta hai */
+    width: calc(33.33% - 15px);
+    /* Responsive width */
     border-radius: 10px;
     flex: 1 1 calc(33.33% - 15px);
-}/* Responsive Design */
-/* Mobile Screens (max-width: 480px) - One canvas per row */
+}
+
+/* Responsive Design */
+/* Mobile Screens (max-width: 480px) - One .canvas per row */
 @media (max-width: 480px) {
-    canvas {
-        height: 98%; /* Height set to 98% */
-        width: 100%; /* Width set to 100% */
+    .canvas {
+        height: 98%;
+        /* Height set to 98% */
+        width: 100%;
+        /* Width set to 100% */
     }
 
-    .main-container > main > .users {
-        flex-direction: column; /* Ensures vertical alignment */
+    .main-container>main>.users {
+        flex-direction: column;
+        /* Ensures vertical alignment */
     }
-}/* Tablet Screens (481px to 768px) - Two canvases per row */
+}
+
+/* Tablet Screens (481px to 768px) - Two .canvases per row */
 @media (min-width: 481px) and (max-width: 768px) {
-    canvas {
+    .canvas {
         flex: 1 1 calc(50% - 15px);
         max-width: calc(50% - 15px);
     }
-}/* Desktop Screens (769px and above) - Three or Four canvases per row */
+}
+
+/* Desktop Screens (769px and above) - Three or Four .canvases per row */
 @media (min-width: 769px) {
-    canvas {
+    .canvas {
         flex: 1 1 calc(33.33% - 15px);
         max-width: calc(33.33% - 15px);
     }
 
-}.main-container>main>.actions {
+}
+
+.main-container>main>.actions {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -130,38 +167,51 @@ canvas {
     /* border: 1px solid rgb(0, 0, 0); */
     width: 98%;
     min-height: 10%;
-}/* Responsive Design */
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-    canvas {
+    .canvas {
         width: 15vmin;
         height: 15vmin;
     }
-}@media (max-width: 480px) {
-    canvas {
+}
+
+@media (max-width: 480px) {
+    .canvas {
         width: 10vmin;
         height: 10vmin;
     }
-}video {
+}
+
+video {
     height: 5%;
     width: 5%;
 
     display: none;
     border: 5px solid blue;
-}video,
-canvas {
+}
+
+video,
+.canvas {
     width: 80%;
-    max-width: 600px;
+    max-width: 80%;
     border-radius: 10px;
     margin-top: 20px;
     border: 1px solid green;
-}canvas>.canvaImg{
+}
+
+.canvas>.canvaImg {
     background-color: red;
     border: 1px solid blue;
     height: 100% !important;
     width: 100% !important;
     object-fit: contain;
-}.actions>button {
-    background: linear-gradient(45deg, #28a745, #6ccf8d); /* Gradient green */
+}
+
+.actions>button {
+    background: linear-gradient(45deg, #28a745, #6ccf8d);
+    /* Gradient green */
     color: white;
     font-size: 18px;
     padding: .5% !important;
@@ -170,16 +220,22 @@ canvas {
     cursor: pointer;
     transition: all 0.4s ease;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}.actions>button:hover {
+}
+
+.actions>button:hover {
     background: linear-gradient(45deg, #6ccf8d, #28a745);
     color: #f0f8f5;
     border: 2px solid #6ccf8d;
     transform: translateY(-3px) scale(1.1);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-}.actions>button:focus {
+}
+
+.actions>button:focus {
     outline: none;
     box-shadow: 0 0 10px 3px rgba(72, 180, 97, 0.7);
-}.actions>button:active {
+}
+
+.actions>button:active {
     transform: translateY(2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }

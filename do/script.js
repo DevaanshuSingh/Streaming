@@ -6,214 +6,95 @@ if (typeof jQuery == "undefined") {
 }
 
 
+
+
 // let video = document.getElementById('video');
-// let canvas = document.getElementById('canvas');
-// let ctx = canvas.getContext('2d');
+// let canvases = document.querySelectorAll('canvas'); // ✅ सभी <canvas> एलिमेंट्स चुनें
+// let ctx;
+// canvases.forEach(canvas => {
+//     ctx = canvas.getContext('2d'); // ✅ हर <canvas> के लिए Context बनाएं
+// });
 
 // function startCamera() {
 //     navigator.mediaDevices.getUserMedia({ video: true })
 //         .then(stream => {
 //             video.srcObject = stream;
+//             // alert('Streaming');
 //         })
 //         .catch(error => {
-//             alert("कैमरा चालू नहीं हो सका! कृपया अनुमति दें।");
-//             console.error("कैमरा खोलने में बाधा आई:", error);
+//             alert('Streaming Error');
+//             alert('Please Access Camera');
+//             console.error('Error While Opening Camera: ', error);
 //         });
+//     // alert('Worked');
+//     captureInterval = setInterval(() => { captureImage(); }, 1000);
 // }
 
 // function offCamera() {
+//     console.log('OutFirst');
 //     let stream = video.srcObject;
 //     if (stream) {
 //         let tracks = stream.getTracks();
 //         tracks.forEach(track => track.stop());
 //         video.srcObject = null;
 //     }
-// }
-
-// function captureImage() {
-//     canvas.width = video.videoWidth;
-//     canvas.height = video.videoHeight;
-//     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-//     let imageData = canvas.toDataURL("image/png"); // इमेज डेटा बेस64 में बदलें
-
-//     $.ajax({ 
-//         type: 'POST',
-//         url: 'swapData.php',
-//         data: { capturedImage: imageData }, // सही इमेज डेटा भेजें
-//         success: function (response) {
-//             if (response) {
-//                 // console.log("सर्वर प्रतिक्रिया: " + response); // सही "console.log"
-//             }
-//         },
-//         error: function (error) {
-//             alert("त्रुटि: " + error); // सही तरीका
-//             // console.error("त्रुटि: " + error);
-//         }
-//     });
-// }
-// function captureImage() {
-//     canvas.width = video.videoWidth;
-//     canvas.height = video.videoHeight;
-//     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-//     let imageData = canvas.toDataURL("image/png"); // इमेज डेटा को Base64 में बदलें
-
-//     $.ajax({
-//         type: 'POST',
-//         url: 'swapData.php',
-//         data: { capturedImage: imageData.split(',')[1] }, // केवल Base64 भाग भेजें
-//         success: function (response) {
-//             $(".bcgImg").attr("src", response); // अब सही इमेज दिखेगी
-//             // console.log("सर्वर प्रतिक्रिया: " + $(".bcgImg").attr("src"));
-//             // $("body").attr("backgroundImage", "url(response)"); // अब सही इमेज दिखेगी
-//         },
-//         error: function (error) {
-//             // console.error("त्रुटि: " + error);
-//         }
-//     });
-// }
-
-// setInterval(() => { captureImage(); }, 500);
-
-
-// function captureImage() {
-//     // alert("Capturing");
-//     canvas.width = video.videoWidth;
-//     canvas.height = video.videoHeight;
-//     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-//     let imageData = canvas.toDataURL("image/png"); // Base64 में बदलें
-//     $.ajax({
-//         type: 'POST',
-//         url: 'swapData.php',
-//         data: { capturedImage: imageData.split(',')[1] }, // केवल इमेज डेटा भेजें
-//         success: function (response) {
-//             if (response.includes("uploads")) { // यदि सही पथ मिले तो अपडेट करें
-//                 let timestamp = new Date().getTime(); // यूनिक टाइमस्टैम्प
-//                 $(".bcgImg").attr("src", response + "?t=" + timestamp); // कैश बायपास
-//             } else {
-//                 console.error("सर्वर से गलत प्रतिक्रिया:", response);
-//             }
-//         },
-//         error: function (error) {
-//             console.error("त्रुटि:", error);
-//         }
-//     });
-// }
-
-// setInterval(() => { captureImage(); }, 500);
-
-// function captureImage() {
-//     canvas.width = video.videoWidth;
-//     canvas.height = video.videoHeight;
-//     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-//     let imageData = canvas.toDataURL("image/png");
-
-//     $.ajax({
-//         type: 'POST',
-//         url: 'swapData.php',
-//         data: { capturedImage: imageData.split(',')[1] }, // केवल Base64 भाग भेजें
-//         success: function (response) {
-//             // console.log("सर्वर प्रतिक्रिया: " + response);
-//             $(".bcgImg").attr("src", response);
-//         },
-//         error: function (error) {
-//             console.error("त्रुटि: " + error);
-//         }
-//     });
-// }
-
-// let count = 0;
-// function captureImage() {
-//     canvas.width = video.videoWidth;
-//     canvas.height = video.videoHeight;
-//     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-//     let imageData = canvas.toDataURL("image/png");
-
-//     $.ajax({
-//         type: 'POST',
-//         url: 'swapData.php',
-//         data: { 
-//             capturedImage: imageData.split(',')[1] ,
-//             userId: id
-//         },
-//         success: function (response) {
-//             console.log("सर्वर प्रतिक्रिया: " + response);
-//             // $(".bcgImg").attr("src", response);
-//         },
-//         error: function (error) {
-//             // console.error("त्रुटि: " + error);
-//         }
-//     });
-
-//     // requestAnimationFrame(captureImage);
-// }
-
-
-// // setInterval(() => { captureImage(); }, 1000);
-
-
-
-// let lastCaptureTime = 0;
-// const captureInterval = 100; // हर 100ms में कैप्चर
-// let isUploading = false;
-
-// function captureImage() {
-//     let now = Date.now();
-//     if (now - lastCaptureTime < captureInterval || isUploading) {
-//         return;
+//     console.log('OutSecond');
+//     if (captureInterval) {
+//         clearInterval(captureInterval);
+//         captureInterval = null; // Reset the variable for safety
+//         console.log('OOutThird');
 //     }
-//     lastCaptureTime = now;
-//     isUploading = true;
+// }
 
-//     if (!video.videoWidth || !video.videoHeight) {
-//         // console.error("❌ वीडियो लोड नहीं हुआ!");
-//         isUploading = false;
-//         return;
-//     }
+// function captureImage() {
+//     console.log(video.content);
+//     canvases.width = video.videoWidth;
+//     canvases.height = video.videoHeight;
+//     ctx.drawImage(video, 0, 0, canvases.width, canvases.height);
+// }
 
-//     canvas.width = video.videoWidth;
-//     canvas.height = video.videoHeight;
-//     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-//     // ✅ अगर Canvas में सही डेटा है तो ही Blob बनाएं
-//     if (canvas.toDataURL("image/png").length < 100) {
-//         console.error("❌ कैनवास में डेटा नहीं है!");
-//         isUploading = false;
-//         return;
-//     }
 
-//     canvas.toBlob(function (blob) {
-//         if (!blob) {
-//             console.error("❌ Blob बनाने में असफल!");
-//             isUploading = false;
-//             return;
-//         }
 
-//         let formData = new FormData();
-//         formData.append("capturedImage", blob, "capture.png");
 
+
+
+
+
+
+// function captureImage() {
+//     // canvases.forEach((canvas, index) => {
+//         canvas.width = video.videoWidth;
+//         canvas.height = video.videoHeight;
+
+//         // ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+//         let imageData = video.toDataURL('image/png');
 //         $.ajax({
 //             type: 'POST',
-//             url: 'swapData.php',
-//             data: formData,
-//             processData: false,
-//             contentType: false,
+//             url: 'upload.php',
+//             data: {
+//                 capturedImage: imageData.split(',')[1],
+//                 userId: " . $userId . "
+//             },
 //             success: function (response) {
-//                 console.log("✅ सर्वर प्रतिक्रिया: " + response);
-//                 $(".bcgImg").attr("src", response);
+//              canvases.forEach((canvas, index) => {
+//                 let ctx = canvas.getContext('2d');
+//                 let img = new Image();
+//                 // img.onload = function () {
+//                     ctx.clearRect(0, 0, canvas.width, canvas.height);
+//                     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+//                 // };
+//                 img.src = response;
+//                 // $('.canvaImg').attr('src','./'+response);
+//                 $('.canvaImg').attr('src', './uploads/testImg.jpg');
+//             // });
+//             // console.log('Response from canvas ' + (index + 1) + ':', response);
+//             console.log(response);
 //             },
 //             error: function (error) {
-//                 console.error("❌ त्रुटि: " + error);
-//             },
-//             complete: function () {
-//                 isUploading = false;
+//                 console.error('Error occurred for canvas ' + (index + 1) + ':', error);
 //             }
 //         });
-//     }, "image/png");
+//     });
 // }
-
-// // हर 100ms में कैप्चर करें
-// setInterval(() => { captureImage(); }, 100);
