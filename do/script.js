@@ -7,8 +7,8 @@ if (typeof jQuery == "undefined") {
 
 function startCamera() {
     navigator.mediaDevices.getUserMedia({
-            video: true
-        })
+        video: true
+    })
         .then(stream => {
             video.srcObject = stream;
         })
@@ -18,9 +18,11 @@ function startCamera() {
             console.error('Error While Opening Camera: ', error);
         });
 
-    captureInterval = setInterval(() => {
-        captureImage();
-    }, 10);
+    setTimeout(() => {
+        captureInterval = setInterval(() => {
+            captureImage();
+        }, 500);
+    }, 1000);
 }
 
 function offCamera() {

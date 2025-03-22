@@ -44,52 +44,6 @@
     <script src="script.js"></script>
     <?php
     echo "<script>
-            // let video = document.getElementById('video');
-                // let canvases = document.querySelectorAll('canvas'); // ✅ सभी <canvas> एलिमेंट्स चुनें
-                // let ctx;
-                // canvases.forEach(canvas => {
-                //     ctx = canvas.getContext('2d'); // ✅ हर <canvas> के लिए Context बनाएं
-                // });
-            // function captureImage() {
-                //     // canvases.forEach((canvas, index) => {
-                //         // let ctx = canvas.getContext('2d');
-
-                //         canvas.width = video.videoWidth;
-                //         canvas.height = video.videoHeight;
-                //         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-                //         let imageData = canvas.toDataURL('image/png');
-                //         let userId = " . $_GET['id'] . ";
-
-                //         $.ajax({
-                //             type: 'POST',
-                //             url: 'upload.php',
-                //             data: {
-                //                 capturedImage: imageData,
-                //                 userId: userId
-                //             },
-                //             success: function(response) {
-                //                 console.log('✅ Image Stored at: ' + response);
-
-                //                 let imgElements = document.querySelectorAll('.canvaImg');
-                //                 let img = imgElements[index]; // ✅ हर canvas के लिए अलग img
-
-                //                 img.src = response; // ✅ इमेज लोड करें
-                //                 img.alt = 'Captured Image';
-                //                 img.style.backgroundColor = 'gold'; 
-
-                //                 img.onload = function() {
-                //                     ctx.clearRect(0, 0, canvas.width, canvas.height);
-                //                     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                //                 };
-                //             },
-                //             error: function(xhr, status, error) {
-                //                 console.error('❌ Error: ', error);
-                //             }
-                //         });
-                //     // });
-            // }
-
             let video = document.querySelector('video');
                 let canvas = document.querySelector('.canvas".$userId."');
                 let ctx = canvas.getContext('2d');
@@ -103,16 +57,21 @@
 
                 let imageData = canvas.toDataURL('image/png');
                 let userId = ".$userId.";
-
+                
+                console.log('Going For AJAX');
                 $.ajax({
                     type: 'POST',
                     url: 'upload.php',
                     data: { capturedImage: imageData, userId: userId },
                     success: function(response) {
-                        // console.log('✅ Image Stored at: ' + response);
+                        response=JSON.parse(response);
+                        const updatedImages = response.updatedImages;
+                        console.log(updatedImages);
 
+                        // console.log(response);
                         let img = document.querySelector('.canvaImg".$userId."');
-                        img.src = response;
+                        img.src = response.imagePath;
+                        // img.src = response;
                         img.alt = 'Captured Image';
                         img.style.backgroundColor = 'gold';
 
@@ -120,6 +79,7 @@
                             ctx.clearRect(0, 0, canvas.width, canvas.height);
                             ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
                         };
+                        console.log('Came From AJAX');
                     },
                     error: function(xhr, status, error) {
                         console.error('❌ Error: ', error);
