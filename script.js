@@ -27,18 +27,19 @@ $(document).ready(function () {
             success: function (response) {
                 answer = JSON.parse(response);
                 alert("response: " + response);
+                console.log(response);
                 if (answer.success == true) {
-                    //Go To Next Page:
+                    // Go To Next Page:
                     use(answer.id);
                 } else {
                     alert("लॉगिन असफल! " + answer.success);
                 }
             },
-            // error: function (xhr, status, error) {
-            //     $('#message strong i').html('सर्वर से कनेक्ट नहीं हो सका।');
-            //     $('#message').css("color", "rgb(243, 53, 53)");
-            //     console.error('AJAX Error:', status, error);
-            // }
+            error: function (xhr, status, error) {
+                $('#message strong i').html('सर्वर से कनेक्ट नहीं हो सका।');
+                $('#message').css("color", "rgb(243, 53, 53)");
+                console.error('AJAX Error:', status, error);
+            }
         });
     });
 });

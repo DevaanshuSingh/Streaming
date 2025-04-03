@@ -58,7 +58,7 @@
                 let imageData = canvas.toDataURL('image/png');
                 let userId = ".$userId.";
                 
-                console.log('Going For AJAX');
+                // console.log('Going For AJAX');
                 $.ajax({
                     type: 'POST',
                     url: 'upload.php',
@@ -66,9 +66,9 @@
                     success: function(response) {
                         response=JSON.parse(response);
                         const updatedImages = response.updatedImages;
-                        console.log(updatedImages);
+                        // console.log(updatedImages);
 
-                        // console.log(response);
+                        console.log(response.imagePath);
                         let img = document.querySelector('.canvaImg".$userId."');
                         img.src = response.imagePath;
                         // img.src = response;
@@ -79,7 +79,7 @@
                             ctx.clearRect(0, 0, canvas.width, canvas.height);
                             ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
                         };
-                        console.log('Came From AJAX');
+                        // console.log('Came From AJAX');
                     },
                     error: function(xhr, status, error) {
                         console.error('❌ Error: ', error);
